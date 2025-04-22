@@ -8,6 +8,10 @@ public class CalcSteps {
     Calculadora calc;
     int a;
     int b;
+    double da;
+    double db;
+    double resultado;
+    String erro;
 
 
     @Given("^somar dois valores positivos$")
@@ -31,5 +35,49 @@ public class CalcSteps {
     public void oResultadoDeveSer(int esperado) {
         assertEquals(esperado, calc.Somar(a, b));
     }
+    //teste2
+    @Given("somar dois valores negativos")
+    public void somarValores() {
+        calc = new Calculadora();
+    }
+    //teste3
+    @Given("somar dois valores quebrados")
+    public  void somarQuebrados() {
+        calc = new Calculadora();
+    }
+    @When("eu preencho o primeiro valor decimal {double}")
+    public void euPreenchoOPrimeiroValorDecimal(double valor1) {
+        da= valor1;
+
+    }
+    @When("eu preencho o segundo valor decimal {double}")
+    public void euPreenchoOSegundoValorDoubleDecimal(double valor2) {
+        db = valor2;
+    }
+
+    @Then("o sistema deve retornar um erro informando que apenas inteiros são aceitos")
+    public void oSistemaDeveRetornarUmErro() {
+        if (da % 1 != 0 || db % 1 != 0) {
+            erro = "Erro: Apenas inteiros são aceitos";
+        } else {
+            int resultado = calc.Somar((int) da, (int) db);
+            erro = "Operação realizada com resultado: " + resultado;
+        }
+
+        assertEquals("Erro: Apenas inteiros são aceitos", erro);
+    }
+    // teste4
+    @Given("Subtrair dois valores")
+    public void subtrairDoisValores() {
+        calc = new Calculadora();
+    }
+    @Then("o resultado da subtração deve ser {int}")
+    public void RetornarSubtracao(int esperado){
+        resultado= calc.Subtrair(a,b);
+    }
+
+
+
+
 
 }
