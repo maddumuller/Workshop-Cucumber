@@ -10,18 +10,18 @@ public class CalcSteps {
     int b;
 
 
-    @Given("^que eu escolha somar$")
+    @Given("^somar dois valores positivos$")
     public void que_eu_escolha_somar() {
         calc = new Calculadora();
     }
 
 
-    @When("eu preencho o primeiro valor ")
+    @When("eu preencho o primeiro valor {int}")
     public void euPreenchoOPrimeiroValor(int valor1) {
         a= valor1;
 
     }
-    @When("eu preencho o segundo valor ")
+    @When("eu preencho o segundo valor {int}")
     public void euPreenchoOSegundoValor(int valor2) {
         b= valor2;
 
