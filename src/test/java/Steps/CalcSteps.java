@@ -11,6 +11,7 @@ public class CalcSteps {
     double da;
     double db;
     double resultado;
+    String resultadoDivisaoexata;
     String erro;
 
 
@@ -75,7 +76,37 @@ public class CalcSteps {
     public void RetornarSubtracao(int esperado){
         resultado= calc.Subtrair(a,b);
     }
+    //teste5(Edu)
+    @Given("que desejo dividir dois valores inteiros")
+    public void prepararDivisao() {
+        calc = new Calculadora(); // já deve estar como variável de classe
+    }
 
+    @When("o dividendo é {int}")
+    public void preencherDividendo(int valor1) {
+        a = valor1;
+    }
+
+    @When("o divisor é {int}")
+    public void preencherDivisor(int valor2) {
+        b = valor2;
+    }
+
+    @Then("o resultado da divisão deve ser {string}")
+    public void verificarResultadoDivisao(String esperado) {
+        resultadoDivisaoexata = calc.Dividir(a, b);
+        assertEquals(esperado, resultadoDivisaoexata);
+    }
+
+    //teste6(Edu)
+
+    @Given("dividir dois valores")
+        public void dividir() { calc = new Calculadora(); }
+        @Then("o sistema deve retornar um erro de divisão por zero")
+        public void RetornarUmErro() {
+            String resultado = calc.Dividir(a, b);
+            assertEquals("Erro: Divisão por zero não é permitida", resultado);
+        }
 
 
 

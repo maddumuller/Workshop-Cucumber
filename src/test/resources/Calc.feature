@@ -25,3 +25,15 @@ Feature: Calculadora
     When eu preencho o primeiro valor 5
     When eu preencho o segundo valor 10
     Then o resultado da subtração deve ser 5
+
+  Scenario: Divisão simples
+    Given dividir dois valores
+    When eu preencho o primeiro valor 10
+    And eu preencho o segundo valor
+    Then o resultado da divisão deve ser "2"
+
+  Scenario: Divisão por zero
+    Given dividir dois valores
+    When eu preencho o primeiro valor 10
+    And eu preencho o segundo valor 0
+    Then o sistema deve retornar um erro de divisão por zero
