@@ -29,8 +29,8 @@ Feature: Calculadora
   Scenario: Divisão simples
     Given dividir dois valores
     When eu preencho o primeiro valor 10
-    And eu preencho o segundo valor 5
-    Then o resultado da divisão deve ser "2"
+    And eu preencho o segundo valor 3
+    Then o resultado da divisão deve ser "3,33"
 
   Scenario: Divisão por zero
     Given dividir dois valores
