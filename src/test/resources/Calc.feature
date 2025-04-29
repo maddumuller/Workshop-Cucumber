@@ -37,3 +37,15 @@ Feature: Calculadora
     When eu preencho o primeiro valor 10
     And eu preencho o segundo valor 0
     Then o sistema deve retornar um erro de divisão por zero
+
+  Scenario: Multiplicar
+    Given multiplicar dois valores
+    When eu preencho o multiplicando 5
+    And eu preencho o multiplicador 4
+    Then o resultado da multiplicação deve ser 20
+
+  Scenario: Inserir letras ao inves numeros
+    Given somar dois valores
+    When eu preencho o primeiro valor "a"
+    And eu preencho o segundo valor 3
+    Then o sistema deve retornar um erro informando que o valor deve ser numérico

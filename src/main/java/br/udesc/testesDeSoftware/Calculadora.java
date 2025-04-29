@@ -2,7 +2,11 @@ package br.udesc.testesDeSoftware;
 
 public class Calculadora {
     public int Somar (int a, int b){
-        return a+b;
+        try {
+            return a + b;
+        }catch (NumberFormatException e){
+            throw new IllegalArgumentException("valor deve ser numérico");
+        }
     }
     public int Subtrair (int a, int b){
         return a-b;

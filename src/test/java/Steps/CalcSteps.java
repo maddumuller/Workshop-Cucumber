@@ -29,18 +29,19 @@ public class CalcSteps {
     @When("eu preencho o segundo valor {int}")
     public void euPreenchoOSegundoValor(int valor2) {
         b= valor2;
-
     }
 
     @Then("o resultado deve ser {int}")
     public void oResultadoDeveSer(int esperado) {
         assertEquals(esperado, calc.Somar(a, b));
     }
+
     //teste2
     @Given("somar dois valores negativos")
     public void somarValores() {
         calc = new Calculadora();
     }
+
     //teste3
     @Given("somar dois valores quebrados")
     public  void somarQuebrados() {
@@ -67,6 +68,7 @@ public class CalcSteps {
 
         assertEquals("Erro: Apenas inteiros são aceitos", erro);
     }
+
     // teste4
     @Given("Subtrair dois valores")
     public void subtrairDoisValores() {
@@ -76,6 +78,7 @@ public class CalcSteps {
     public void RetornarSubtracao(int esperado){
         resultado= calc.Subtrair(a,b);
     }
+
     //teste5(Edu)
     @Given("que desejo dividir dois valores inteiros")
     public void prepararDivisao() {
@@ -99,16 +102,51 @@ public class CalcSteps {
     }
 
     //teste6(Edu)
-
     @Given("dividir dois valores")
-        public void dividir() { calc = new Calculadora(); }
-        @Then("o sistema deve retornar um erro de divisão por zero")
-        public void RetornarUmErro() {
-            String resultado = calc.Dividir(a, b);
-            assertEquals("Erro: Divisão por zero não é permitida", resultado);
+    public void dividir() { calc = new Calculadora(); }
+    @Then("o sistema deve retornar um erro de divisão por zero")
+    public void RetornarUmErro() {
+        String resultado = calc.Dividir(a, b);
+        assertEquals("Erro: Divisão por zero não é permitida", resultado);
+    }
+
+    //teste7
+    @Given("multiplicar dois valores")
+    public void multiplicar() {
+        calc = new Calculadora();
+    }
+
+    @When("eu preencho o multiplicando {int}")
+    public void euPreenchoOMultiplicando(int valor1) {
+        a = valor1;
+    }
+
+    @And("eu preencho o multiplicador {int}")
+    public void euPreenchoOMultiplicador(int valor2) {
+        b = valor2;
+    }
+
+    @Then("o resultado da multiplicação deve ser {int}")
+    public void verificarResultadoMultiplicacao(int esperado) {
+        assertEquals(esperado, calc.Multiplicar(a, b));
+    }
+
+    //teste8
+    @Given("somar dois valores")
+    public void somarDoisValores() {calc = new Calculadora();}
+
+    @When("eu preencho o primeiro valor {string}")
+    public void euPreenchoOPrimeiroValor(String valor1) {
+        try {
+            a = Integer.parseInt(valor1);
+        } catch (NumberFormatException e) {
+            erro = "valor deve ser numérico";
         }
+    }
 
-
-
-
+    @Then("o sistema deve retornar um erro informando que o valor deve ser numérico")
+    public void retornarUmErro() {
+        assertNotNull("Esperava mensagem de erro, mas não houve.", erro);
+        assertEquals("valor deve ser numérico", erro);
+    }
 }
